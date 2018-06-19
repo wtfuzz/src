@@ -5674,8 +5674,7 @@ pf_route_shared(struct mbuf **m, struct pf_rule *r, int dir, struct ifnet *ifp,
 			    &naddr, NULL, &sn);
 			if (!PF_AZERO(&naddr, AF_INET))
 				dst.sin_addr.s_addr = naddr.v4.s_addr;
-			ifp = r->rpool.cur->kif ?
-			    r->rpool.cur->kif->pfik_ifp : NULL;
+			ifp = sn && sn->kif ? sn->kif->pfik_ifp : NULL;
 		} else {
 			if (!PF_AZERO(&s->rt_addr, AF_INET))
 				dst.sin_addr.s_addr =
@@ -5913,7 +5912,7 @@ pf_route6_shared(struct mbuf **m, struct pf_rule *r, int dir,
 		if (!PF_AZERO(&naddr, AF_INET6))
 			PF_ACPY((struct pf_addr *)&dst.sin6_addr,
 			    &naddr, AF_INET6);
-		ifp = r->rpool.cur->kif ? r->rpool.cur->kif->pfik_ifp : NULL;
+		ifp = sn && sn->kif ? sn->kif->pfik_ifp : NULL;
 	} else {
 		if (!PF_AZERO(&s->rt_addr, AF_INET6))
 			PF_ACPY((struct pf_addr *)&dst.sin6_addr,
