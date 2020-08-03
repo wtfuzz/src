@@ -142,7 +142,7 @@ static struct bxe_device_type bxe_devs[] = {
         BRCM_VENDORID,
         CHIP_NUM_57810,
         PCI_ANY_ID, PCI_ANY_ID,
-        "QLogic NetXtreme II BCM57810 10GbE [BELL BYPASS]"
+        "QLogic NetXtreme II BCM57810 10GbE"
     },
     {
         BRCM_VENDORID,
